@@ -8,6 +8,7 @@ export interface AppConfig {
   corsOrigin: string;
   internalCallHeader: string;
   gatewayUrl?: string;
+  apiPrefix: string;
 }
 
 export function loadConfig(): AppConfig {
@@ -27,6 +28,7 @@ export function loadConfig(): AppConfig {
     corsOrigin: process.env.CORS_ORIGIN ?? 'true',
     internalCallHeader: process.env.INTERNAL_CALL_HEADER ?? 'x-internal-call',
     gatewayUrl: process.env.GATEWAY_URL,
+    apiPrefix: process.env.API_PREFIX ?? '',
   };
 
   return config;
