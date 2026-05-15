@@ -1,7 +1,6 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 import prettierConfig from "eslint-config-prettier";
-import prettierPlugin from "eslint-plugin-prettier";
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -9,10 +8,6 @@ export default tseslint.config(
   ...tseslint.configs.stylisticTypeChecked,
   prettierConfig,
   {
-    plugins: { prettier: prettierPlugin },
-    rules: {
-      "prettier/prettier": "error",
-    },
     languageOptions: {
       parserOptions: {
         projectService: true,

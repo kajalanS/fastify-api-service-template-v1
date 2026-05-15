@@ -1,11 +1,11 @@
 import type { FastifyInstance, FastifyRequest } from 'fastify';
 import fastifyRateLimit from '@fastify/rate-limit';
 
-const EXEMPT_URLS = ['/health'];
+const EXEMPT_URLS = ['/health', '/routes'];
 
 export function registerRateLimit(app: FastifyInstance) {
   app.register(fastifyRateLimit, {
-    max: 200,
+    max: 100,
     timeWindow: '1 minute',
     keyGenerator: (request: FastifyRequest) => {
       if (EXEMPT_URLS.includes(request.url)) {
