@@ -8,8 +8,17 @@ import { healthRoute } from './routes/health.js';
 import { routesRoute } from './routes/routes.js';
 
 export function buildApp(config: AppConfig) {
+  const app = Fastify({
+    logger: {
+      level: config.logLevel,
+      ...(config.logFormat === 'pretty' ? { transport: { target: 'pino-pretty' } } : {}),
+    },
+  });
 
-  // Register all routes under the API prefix (if configured)
+  registerHelmet(app);
+  registerCors(app, config);
+  registerRateLimit(app);
+
   if (config.apiPrefix) {
     app.register(
       (prefixedApp, _opts, done) => {

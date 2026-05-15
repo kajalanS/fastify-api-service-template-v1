@@ -25,7 +25,7 @@ export function routesRoute(app: FastifyInstance) {
         },
       },
     },
-    async () => {
+    () => {
       const tree = app.printRoutes({ commonPrefix: false });
       const lines = tree.split('\n');
       const routePattern = /──\s+(\S+)\s+\(([^)]+)\)/;
